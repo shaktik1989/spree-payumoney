@@ -1,0 +1,34 @@
+<%=debug(@txnid)%>
+<%= debug(@order) %>
+
+<%= debug(@checksum) %>
+
+<%= debug(@service_url) %>
+
+<h4>Processing ...</h4>
+    <form id="checkout_form" name="checkout_form" method="post" action="<%=@service_url%>">	
+        <input type="hidden" name="key" value="<%=@merchant_key%>"> 
+        <input type="hidden" name="txnid" value="<%=@txnid%>">
+        <input type="hidden" name="amount" value="<%=@amount%>">		
+        <input type="hidden" name="productinfo" value="<%=@productinfo%>">
+        <input type="hidden" name="firstname" value="<%=@service_url%>">
+        <input type="hidden" name="udf1" value="<%=@service_url%>">	
+        <input type="hidden" name="udf2" value="<%=@service_url%>">
+        <input type="hidden" name="udf3" value="<%=@service_url%>">	
+        <input type="hidden" name="udf4" value="<%=@service_url%>">
+        <input type="hidden" name="email" value="<%=@email%>">
+        <input type="hidden" name="phone" value="<%=@service_url%>">
+        <input type="hidden" name="surl" value="<%=@service_url%>">
+        <input type="hidden" name="furl" value="<%=@service_url%>">		        
+        <input type="hidden" name="hash" value="<%=@service_url%>">	
+        <input type="hidden" name="service_provider" value="payu_paisa">					
+    </form>
+    
+    <script type="text/javascript">        
+        // self executing function here
+        (function() {
+           // your page initialization code here
+           // the DOM will be available here
+           //document.getElementById("checkout_form").submit();
+        })();
+    </script>
