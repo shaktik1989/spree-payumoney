@@ -12,6 +12,8 @@ module Spree
     end
     
     def provider
+      #assign payment mode
+      OffsitePayments.mode = preferred_test_mode == true ? :test : :production
       provider_class
     end
 

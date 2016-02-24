@@ -1,7 +1,6 @@
 module Spree
   class PayumoneyController < StoreController
-    protect_from_forgery except: :confirm
-    #include ActiveMerchant::Billing::Integrations::PayuIn
+    protect_from_forgery only: :index
     
     def index
       @productinfo = 'apparel'
@@ -9,7 +8,7 @@ module Spree
       @furl = payumoney_cancel_url
       
       payment_method = Spree::PaymentMethod.find(params[:payment_method_id])
-      
+
       @service_url = payment_method.provider.service_url
       @merchant_key = payment_method.preferred_merchant_id
 
@@ -39,6 +38,8 @@ module Spree
 
     end
     def confirm
+      logger.debug "Payumoney Response: #{params.inspect}"
+      @all = params
     end
     def cancel
       @all = params
