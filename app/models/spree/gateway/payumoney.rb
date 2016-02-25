@@ -7,8 +7,7 @@ module Spree
     #attr_accessible :merchant_id, :secret_key
       
     def provider_class
-      #::OffsitePayments::Integrations::PayuInPaisa
-      ::OffsitePayments::Integrations::PayuIn
+      ::OffsitePayments.integration('Payu_In')
     end
     
     def provider
