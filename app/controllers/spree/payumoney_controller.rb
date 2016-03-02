@@ -63,10 +63,10 @@ module Spree
         amount: order.total,
         payment_method: payment_method
       })
-      payment.started_processing!
-      payment.pend!
-      
-      #TODO: mark payment as paid
+
+      #mark payment as paid/complete
+      payment.complete
+
       order.next
       order.update_attributes({:state => "complete", :completed_at => Time.now})
                     
