@@ -58,5 +58,9 @@ module Spree
     def amount_ok?(order_total, pg_amount)
       BigDecimal.new(pg_amount) == order_total
     end
+
+    def source_required?
+      false
+    end
   end
 end
