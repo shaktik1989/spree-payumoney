@@ -1,7 +1,6 @@
 module Spree
   class PayumoneyController < StoreController
     protect_from_forgery only: :index
-    @productinfo = 'apparel'
     
     def index
       @surl = payumoney_confirm_url
@@ -26,6 +25,7 @@ module Spree
       #not sure if necessary by offsite payments
       @payment_method_id = payment_method.id #udf4
       
+      @productinfo = 'apparel'
       @checksum = payment_method.checksum([@txnid, @amount, @productinfo, @firstname, @email, @lastname, @phone, @city, @payment_method_id, '', '', '', '', '', '']);
       @service_provider = payment_method.service_provider
     end
@@ -45,6 +45,7 @@ module Spree
       end
       
       #confirm for correct hash and order amount requested before marking an payment as 'complete'
+      @productinfo = 'apparel'
       checksum_matched = payment_method.checksum_ok?([params[:status], '', '', '', '', '', '', params[:udf4], params[:udf3], params[:udf2], params[:udf1], order.email, firstname, @productinfo, params[:amount], params[:txnid]], params[:hash])
       if !checksum_matched
         flash.alert = 'Malicious transaction detected.'
